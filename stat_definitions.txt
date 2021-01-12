@@ -1,0 +1,20 @@
+Here is a list of all the Stats Used in the Tweets.
+
+- Pts: Points scored in the game
+- Ast: Assists in a game
+- Reb: Rebounds in a game
+- Mins: Mins played in the game
+- Ast/TOV: Assist to Turnover ratio
+    - link: https://captaincalculator.com/sports/basketball/assist-turnover-ratio-calculator/
+- TOV%: Turnover Percentage - Turnover percentage is an estimate of turnovers per 100 plays.
+    - link: https://www.basketball-reference.com/about/glossary.html#tov
+- FTr: Free Throw Attempt Rate - Number of free throw attempts per FG attempt
+    - link: https://ilevy.wordpress.com/stats-glossary/ftr/#:~:text=What%20is%20it%3F,The%20formula%20is%20FTA%2FFGA.
+- eFG%: Effective Field Goal Percentage: This statistic adjusts for the fact that a 3-point field goal is worth one more point than a 2-point field goal
+    - link: https://www.basketball-reference.com/about/glossary.html#dws
+- TS%: True Shooting Percentage: True shooting percentage is a measure of shooting efficiency that takes into account field goals, 3-point field goals, and free throws.
+    - link: https://www.basketball-reference.com/about/glossary.html#ts_pct
+- 3PAr: 3 Point Attempt Rate: what % of a player's shots come from long-distance, another good gauge of how they're utilized offensively
+    - link: https://www.sports-reference.com/blog/2013/10/small-additions-to-basketball-reference/#:~:text=Added%203%2DPoint%20Attempt%20Rate,how%20they're%20utilized%20offensively.
+- Ast%: Assist Percent: Assist percentage is an estimate of the percentage of teammate field goals a player assisted while he was on the floor.
+    - link: https://www.basketball-reference.com/about/glossary.html#ast_pct
