@@ -39,6 +39,7 @@ The python portion of this is to create the daily tweets and tweet them out.
 1/2020:
 - Creating the weekly tweet
 - Creating a newsletter
+- Continue on cleaning up code
 
 ## Suggestions:
 - Feel free to tweet at the account with any suggestions!
