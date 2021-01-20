@@ -39,8 +39,8 @@ The python portion of this is to create the daily tweets and tweet them out.
 
 ## Current Improvements (Working on):
 1/2020:
-- Creating the weekly tweet
 - Creating a newsletter
+- Need a script to double check each of the games data is accurate as stat corrections can happen
 
 ## Suggestions:
 - Feel free to tweet at the account with any suggestions!

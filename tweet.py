@@ -163,7 +163,7 @@ def daily_tuesday_tweet(base_tweet):
     daily_threepar_emoji = sql_queries.emoji_standard_query(daily_threepar_id, daily_threepar_stat, season_threepar_dict)
 
     # 4. Daily Leader in True Shooting Percentage
-    daily_tsp_id, daily_tsp_name, daily_tsp_stat = sql_queries.daily_stat_leader_query('func_tsp_daily', 2, 3, 7)
+    daily_tsp_id, daily_tsp_name, daily_tsp_stat = sql_queries.daily_stat_leader_query('func_tsp_daily', 2, 3, 6)
     # Creating Season Dict for True Shooting Percentage
     season_tsp_dict = sql_queries.dict_stat_query('func_tsp_season', '2020-2021', 0, 5)
     # Daily True Shooting Percentage Emoji
@@ -406,34 +406,88 @@ BLK: {daily_blk_name} {daily_blk_stat} {daily_blk_emoji}
 FTr: {daily_ftar_name} {daily_ftar_stat} {daily_ftar_emoji}"""
     return formatted_tweet
 
-# TODO: Still need to do the weekly stat roundup
+
+def weekly_sunday_tweet():
+    # 1. Points Per Game
+    weekly_ppg_id, weekly_ppg_name, weekly_ppg_stat = sql_queries.weekly_stat_leader_query('func_ptspg_weekly', 0, 1, 3)
+    # Creating PPG Dict for Season (Used for Emoji)
+    season_ppts_dict = sql_queries.dict_stat_query('func_ptspg_season', '2020-2021', 0, 3)
+    # Weekly PPG Emoji
+    weekly_ppg_emoji = sql_queries.emoji_standard_query(weekly_ppg_id, weekly_ppg_stat, season_ppts_dict)
+
+    # 2. Points Per 36 Mins
+    weekly_pp_full_game_id, weekly_pp_full_game_name, weekly_pp_full_game_stat = sql_queries.weekly_stat_leader_query('func_pts_per_full_game_weekly', 0, 1, 5)
+    # Creating Point Per 36 Mins Dict for Season (Used for Emoji)
+    season_pp_full_game_dict = sql_queries.dict_stat_query('func_pts_per_full_game_season', '2020-2021', 0, 5)
+    # Weekly Points Per 36 Mins Emoji
+    weekly_pp_full_game_emoji = sql_queries.emoji_standard_query(weekly_pp_full_game_id, weekly_pp_full_game_stat, season_pp_full_game_dict)
+
+    # 3. Assist Per 36 mins
+    weekly_ast_full_game_id, weekly_ast_full_game_name, weekly_ast_full_game_stat = sql_queries.weekly_stat_leader_query('func_ast_per_full_game_weekly', 0, 1, 5)
+    # Creating Ast Per 36 Mins Dict for Season (Used for Emoji)
+    season_ast_full_game_dict = sql_queries.dict_stat_query('func_ast_per_full_game_season', '2020-2021', 0, 5)
+    # Weekly Ast Per 36 Mins Emoji
+    weekly_ast_full_game_emoji = sql_queries.emoji_standard_query(weekly_ast_full_game_id, weekly_ast_full_game_stat, season_ast_full_game_dict)
+
+    # 4. Rebounds Per 36 Mins
+    weekly_reb_full_game_id, weekly_reb_full_game_name, weekly_reb_full_game_stat = sql_queries.weekly_stat_leader_query('func_reb_per_full_game_weekly', 0, 1, 5)
+    # Creating Reb Per 36 Mins Dict for Season (Used for Emoji)
+    season_reb_full_game_dict = sql_queries.dict_stat_query('func_reb_per_full_game_season', '2020-2021', 0, 5)
+    # Weekly Rebounds Per 36 Mins Emoji
+    weekly_reb_full_game_emoji = sql_queries.emoji_standard_query(weekly_reb_full_game_id, weekly_reb_full_game_stat, season_reb_full_game_dict)
+
+    # 5. True Shooting Percentage
+    weekly_tsp_id, weekly_tsp_name, weekly_tsp_stat = sql_queries.weekly_stat_leader_query('func_tsp_weekly', 0, 1, 5)
+    # Creating TSP Season Dict (Emoji)
+    season_tsp_dict = sql_queries.dict_stat_query('func_tsp_season', '2020-2021', 0, 5)
+    # Weekly True Shooting Emoji
+    weekly_tsp_emoji = sql_queries.emoji_standard_query(weekly_tsp_id, weekly_tsp_stat, season_tsp_dict)
+
+    # 6. 3 Point Percentage
+    weekly_three_percent_id, weekly_three_percent_name, weekly_three_percent_stat = sql_queries.weekly_stat_leader_query('func_threepercent_weekly', 0, 1, 4)
+    # Creating Season Dict for 3P%
+    season_threeperc_dict = sql_queries.dict_stat_query('func_threepercent_season', '2020-2021', 0, 4)
+    # Weekly 3 Point Percentage Emoji
+    weekly_three_percent_emoji = sql_queries.emoji_standard_query(weekly_three_percent_id, weekly_three_percent_stat, season_threeperc_dict)
+
+    # 7. Ast/Tov Ratio
+    weekly_ast_tov_ratio_id, weekly_ast_tov_ratio_name, weekly_ast_tov_ratio_stat = sql_queries.weekly_stat_leader_query('func_ast_tov_ratio_weekly', 0, 1, 4)
+    # Creating Ast/Tov Dict for Season (Used for Emoji)
+    season_ast_tov_dict = sql_queries.dict_stat_query('func_ast_tov_ratio_season', '2020-2021', 0, 4)
+    # Daily Ast/Tov Emoji
+    weekly_ast_tov_emoji = sql_queries.emoji_standard_query(weekly_ast_tov_ratio_id, weekly_ast_tov_ratio_stat, season_ast_tov_dict)
+
+    # Formatting Tweet
+    formatted_tweet = f"""
+PPG: {weekly_ppg_name} - {weekly_ppg_stat}{weekly_ppg_emoji}
+PTS Per36: {weekly_pp_full_game_name} - {weekly_pp_full_game_stat}{weekly_pp_full_game_emoji}
+Ast Per36: {weekly_ast_full_game_name} - {weekly_ast_full_game_stat}{weekly_ast_full_game_emoji}
+Reb Per36: {weekly_reb_full_game_name} - {weekly_reb_full_game_stat}{weekly_reb_full_game_emoji}
+TS%: {weekly_tsp_name} - {weekly_tsp_stat}{weekly_tsp_emoji}
+3P%: {weekly_three_percent_name} - {weekly_three_percent_stat}{weekly_three_percent_emoji} 
+Ast/Tov: {weekly_ast_tov_ratio_name} - {weekly_ast_tov_ratio_stat}{weekly_ast_tov_emoji}
+    """
+    return formatted_tweet
 
 # Deciding which tweet to send based on the Day of the Week
 if CUR_WEEKDAY_NUM == 0:
     tweet_to_send = daily_monday_tweet(daily_base_tweet)
-    print(tweet_to_send)
-    # send_tweet_func(tweet_to_send)
+    send_tweet_func(tweet_to_send)
 elif CUR_WEEKDAY_NUM == 1:
     tweet_to_send = daily_tuesday_tweet(daily_base_tweet)
-    print(tweet_to_send)
-    # send_tweet_func(tweet_to_send)
+    send_tweet_func(tweet_to_send)
 elif CUR_WEEKDAY_NUM == 2:
     tweet_to_send = daily_wednesday_tweet(daily_base_tweet)
-    print(tweet_to_send)
-    # send_tweet_func(tweet_to_send)
+    send_tweet_func(tweet_to_send)
 elif CUR_WEEKDAY_NUM == 3:
     tweet_to_send = daily_thursday_tweet(daily_base_tweet)
-    print(tweet_to_send)
-    # send_tweet_func(tweet_to_send)
+    send_tweet_func(tweet_to_send)
 elif CUR_WEEKDAY_NUM == 4:
     tweet_to_send = daily_friday_tweet(daily_base_tweet)
-    print(tweet_to_send)
-    # send_tweet_func(tweet_to_send)
+    send_tweet_func(tweet_to_send)
 elif CUR_WEEKDAY_NUM == 5:
     tweet_to_send = daily_saturday_tweet(daily_base_tweet)
-    print(tweet_to_send)
-    # send_tweet_func(tweet_to_send)
+    send_tweet_func(tweet_to_send)
 elif CUR_WEEKDAY_NUM == 6:
     tweet_to_send = daily_sunday_tweet(daily_base_tweet)
-    print(tweet_to_send)
-    # send_tweet_func(tweet_to_send)
+    send_tweet_func(tweet_to_send)

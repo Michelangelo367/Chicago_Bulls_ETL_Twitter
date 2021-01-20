@@ -64,6 +64,7 @@ def daily_stat_leader_query(sql_query, player_id_loc, player_name_loc, stat_loc)
     player_id = sql_return_data[player_id_loc]
     player_last_name = sql_return_data[player_name_loc].split()[1]
     player_stat = sql_return_data[stat_loc]
+    player_stat = round(player_stat, 1)
     return player_id, player_last_name, player_stat
 
 
@@ -82,6 +83,7 @@ def weekly_stat_leader_query(sql_query, player_id_loc, player_name_loc, stat_loc
     player_id = sql_return_data[player_id_loc]
     player_last_name = sql_return_data[player_name_loc].split()[1]
     player_stat = sql_return_data[stat_loc]
+    player_stat = round(player_stat, 1)
     return player_id, player_last_name, player_stat
 
 
