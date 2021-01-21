@@ -35,6 +35,7 @@ def game_date_yest_query():
     last_game_date = cursor.fetchone()[0]
     return last_game_date
 
+
 # Daily Record (Last Game)
 def daily_record_query():
     """
@@ -45,8 +46,7 @@ def daily_record_query():
     win_count = cursor.fetchone()[3]
     if win_count > 0:
         return "Win", "\U0001F525"
-    else:
-        return "Loss", "\U0001F44E"
+    return "Loss", "\U0001F44E"
 
 
 # Daily Stat Query Function
@@ -94,6 +94,8 @@ def dict_stat_query(sql_query, sql_season, player_id_loc, stat_loc):
     for the stat.
     :param sql_query: Query for the Function (postgres)
     :param sql_season: Parameter for SQL Function
+    :param player_id_loc: Location in the result of Player Id
+    :param stat_loc: Location of the stat in question
     :return: Dict of Player_ID, Stat
     """
     player_data_dict = {}
@@ -103,20 +105,27 @@ def dict_stat_query(sql_query, sql_season, player_id_loc, stat_loc):
         player_data_dict[player_data[player_id_loc]] = float(player_data[stat_loc])
     return player_data_dict
 
+
 # Season Record Query Functions:
 def season_record_query(sql_season):
-    cursor.callproc('public.func_record_season',[sql_season])
+    """
+    Function to get the bulls record for any season
+    :param sql_season: String
+    :return: total games played, won, loss and an emoji (str)
+    """
+    cursor.callproc('public.func_record_season', [sql_season])
     total_record = cursor.fetchone()
     total_gp = total_record[0]
     total_wins = total_record[1]
     total_loss = total_record[2]
-    if total_wins >= total_wins:
+    if total_wins >= total_loss:
         # Good Emoji
-        record_emoji ='\U0001F92E'
+        record_emoji = '\U0001F601'
     else:
         # Bad Emoji
-        record_emoji = '\U0001F601'
+        record_emoji = '\U0001F92E'
     return total_gp, total_wins, total_loss, record_emoji
+
 
 # Emoji Query Regular
 def emoji_standard_query(player_id, stat, stat_dict):
@@ -150,3 +159,36 @@ def emoji_reversed_query(player_id, stat, stat_dict):
         # Trending Up
         emoji = "\U0001F4C8"
     return emoji
+
+
+# Weekly Tweet - Dates
+def weekly_dates_tweet():
+    """
+    Function to get the date seven days ago and current date
+    :return: Earlier Date (Seven Days Ago), Second Date (Current)
+    """
+    cursor.execute("SELECT date(current_date - INTERVAL '7 days')AS seven_days_ago,CURRENT_DATE;")
+    dates = cursor.fetchall()
+    first_date = dates[0][0]
+    second_date = dates[0][1]
+    return first_date, second_date
+
+
+# Record For Last 7 Days
+def weekly_record():
+    """
+    Function that returns the record for the last 7 days
+    :return: Int, Text
+    """
+    cursor.callproc('func_record_weekly')
+    record = cursor.fetchall()
+    games_played = record[0][0]
+    wins = record[0][1]
+    loss = record[0][2]
+    if wins >= loss:
+        # Happy Face
+        emoji = '\U0001F601'
+    else:
+        # Bad Emoji
+        emoji = '\U0001F92E'
+    return games_played, wins, loss, emoji

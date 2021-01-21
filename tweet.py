@@ -408,6 +408,13 @@ FTr: {daily_ftar_name} {daily_ftar_stat} {daily_ftar_emoji}"""
 
 
 def weekly_sunday_tweet():
+    # Get the Days for the tweet
+    seven_days_ago, current_date = sql_queries.weekly_dates_tweet()
+
+    # Record for the past seven days
+    weekly_games_played, weekly_games_won, \
+    weekly_games_loss, weekly_games_emoji = sql_queries.weekly_record()
+
     # 1. Points Per Game
     weekly_ppg_id, weekly_ppg_name, weekly_ppg_stat = sql_queries.weekly_stat_leader_query('func_ptspg_weekly', 0, 1, 3)
     # Creating PPG Dict for Season (Used for Emoji)
@@ -459,6 +466,8 @@ def weekly_sunday_tweet():
 
     # Formatting Tweet
     formatted_tweet = f"""
+Bulls Weekly Roundup Tweet: {seven_days_ago} - {current_date}
+Record: {weekly_games_won} - {weekly_games_loss} {weekly_games_emoji}
 PPG: {weekly_ppg_name} - {weekly_ppg_stat}{weekly_ppg_emoji}
 PTS Per36: {weekly_pp_full_game_name} - {weekly_pp_full_game_stat}{weekly_pp_full_game_emoji}
 Ast Per36: {weekly_ast_full_game_name} - {weekly_ast_full_game_stat}{weekly_ast_full_game_emoji}
@@ -468,6 +477,11 @@ TS%: {weekly_tsp_name} - {weekly_tsp_stat}{weekly_tsp_emoji}
 Ast/Tov: {weekly_ast_tov_ratio_name} - {weekly_ast_tov_ratio_stat}{weekly_ast_tov_emoji}
     """
     return formatted_tweet
+
+
+print(weekly_sunday_tweet())
+
+sys.exit()
 
 # Deciding which tweet to send based on the Day of the Week
 if CUR_WEEKDAY_NUM == 0:
