@@ -192,3 +192,28 @@ def weekly_record():
         # Bad Emoji
         emoji = '\U0001F92E'
     return games_played, wins, loss, emoji
+
+
+# Season Daily Dictionary
+def season_daily_stats(sql_query, sql_season, player_id_loc, player_name_loc, stat_loc):
+    """
+    This is the function for the Daily Season Stats Tweets that calls a SQL query
+    and returns a list of the data for easier processing
+    :param sql_query: str
+    :param sql_season: str
+    :param player_id_loc: int
+    :param player_name_loc: int
+    :param stat_loc: int
+    :return: List of the data
+    """
+    player_data_list = []
+    cursor.callproc(sql_query, [sql_season])
+    sql_data_list = cursor.fetchall()
+    for player_data in sql_data_list:
+        id = player_data[player_id_loc]
+        name = player_data[player_name_loc]
+        stat = round(float(player_data[stat_loc]), 1)
+        dict_element = dict(player_id=id, player_name=name,
+                            player_stat=stat)
+        player_data_list.append(dict_element)
+    return player_data_list

@@ -1,13 +1,13 @@
 """
-This is the file that tweets out the stats interacting with the
+This is the file that tweets out the daily box score stats interacting with the
 functions from the sql_queries file.
 """
 
 import json
 import datetime as dt
-import sys
 import tweepy
 import sql_queries
+import daily_season_tweets
 
 # Twitter Credentials
 with open(r"/Users/GrantCulp/Desktop/Python/credentials_python_info.txt") as f:
@@ -23,17 +23,9 @@ twitter_api = tweepy.API(twitter_auth)
 
 # We first need to get the day of the week
 # This will be used to decide what tweet to send
-# And if we need to send the weekly tweet
 # 0 = Monday; 6 = Sunday
 CUR_WEEKDAY_NUM = dt.datetime.today().weekday()
 YESTERDAY_DATE = dt.date.today() - dt.timedelta(days=1)
-
-# If there was no game played yesterday exit
-# But if it is a Sunday then do not exit
-if YESTERDAY_DATE != sql_queries.game_date_yest_query() and CUR_WEEKDAY_NUM != 6:
-    sys.exit("No game yesterday and not a Sunday")
-else:
-    pass
 
 
 def send_tweet_func(tweet):
@@ -58,7 +50,7 @@ def daily_base_stats():
     # Daily Point Leader
     daily_ppts_id, daily_ppts_name, daily_ppts_stat = sql_queries.daily_stat_leader_query('func_pts_daily', 2, 3, 4)
     # Creating PPG Leader Dict for Season (Used for Emoji)
-    season_ppts_dict = sql_queries.dict_stat_query('func_ptspg_season', '2020-2021', 0, 3)
+    season_ppts_dict = sql_queries.dict_stat_query('func_ptspg_season', '2020-2021', 0, 4)
     # Daily Point Leader Emoji
     daily_ppts_emoji = sql_queries.emoji_standard_query(daily_ppts_id, daily_ppts_stat, season_ppts_dict)
 
@@ -408,6 +400,10 @@ FTr: {daily_ftar_name} {daily_ftar_stat} {daily_ftar_emoji}"""
 
 
 def weekly_sunday_tweet():
+    """
+    This is the weekly round up tweet that goes out on Sundays
+    :return: Formatted Tweet to then send out
+    """
     # Get the Days for the tweet
     seven_days_ago, current_date = sql_queries.weekly_dates_tweet()
 
@@ -416,9 +412,9 @@ def weekly_sunday_tweet():
     weekly_games_loss, weekly_games_emoji = sql_queries.weekly_record()
 
     # 1. Points Per Game
-    weekly_ppg_id, weekly_ppg_name, weekly_ppg_stat = sql_queries.weekly_stat_leader_query('func_ptspg_weekly', 0, 1, 3)
+    weekly_ppg_id, weekly_ppg_name, weekly_ppg_stat = sql_queries.weekly_stat_leader_query('func_ptspg_weekly', 0, 1, 4)
     # Creating PPG Dict for Season (Used for Emoji)
-    season_ppts_dict = sql_queries.dict_stat_query('func_ptspg_season', '2020-2021', 0, 3)
+    season_ppts_dict = sql_queries.dict_stat_query('func_ptspg_season', '2020-2021', 0, 4)
     # Weekly PPG Emoji
     weekly_ppg_emoji = sql_queries.emoji_standard_query(weekly_ppg_id, weekly_ppg_stat, season_ppts_dict)
 
@@ -479,29 +475,90 @@ Ast/Tov: {weekly_ast_tov_ratio_name} - {weekly_ast_tov_ratio_stat}{weekly_ast_to
     return formatted_tweet
 
 
-print(weekly_sunday_tweet())
-
-sys.exit()
-
-# Deciding which tweet to send based on the Day of the Week
+# Deciding which tweets to send based on the Day of the Week
+# Monday
 if CUR_WEEKDAY_NUM == 0:
-    tweet_to_send = daily_monday_tweet(daily_base_tweet)
-    send_tweet_func(tweet_to_send)
+    if YESTERDAY_DATE == sql_queries.game_date_yest_query():
+        # Daily Box Score Tweet
+        daily_box_tweet = daily_monday_tweet(daily_base_tweet)
+        send_tweet_func(daily_box_tweet)
+        # Season Stats Tweet
+        daily_season_tweet = daily_season_tweets.mon_season_stats()
+        send_tweet_func(daily_season_tweet)
+    else:
+        # Season Stats Tweet
+        daily_season_tweet = daily_season_tweets.mon_season_stats()
+        send_tweet_func(daily_season_tweet)
+# Tuesday
 elif CUR_WEEKDAY_NUM == 1:
-    tweet_to_send = daily_tuesday_tweet(daily_base_tweet)
-    send_tweet_func(tweet_to_send)
+    if YESTERDAY_DATE == sql_queries.game_date_yest_query():
+        # Daily Box Score Tweet
+        daily_box_tweet = daily_tuesday_tweet(daily_base_tweet)
+        send_tweet_func(daily_box_tweet)
+        # Season Stats Tweet
+        daily_season_tweet = daily_season_tweets.tues_season_stats()
+        send_tweet_func(daily_season_tweet)
+    else:
+        # Season Stats Tweet
+        daily_season_tweet = daily_season_tweets.tues_season_stats()
+        send_tweet_func(daily_season_tweet)
+# Wednesday
 elif CUR_WEEKDAY_NUM == 2:
-    tweet_to_send = daily_wednesday_tweet(daily_base_tweet)
-    send_tweet_func(tweet_to_send)
+    if YESTERDAY_DATE == sql_queries.game_date_yest_query():
+        # Daily Box Score Tweet
+        daily_box_tweet = daily_wednesday_tweet(daily_base_tweet)
+        send_tweet_func(daily_box_tweet)
+        # Season Stats Tweet
+        daily_season_tweet = daily_season_tweets.wed_season_stats()
+        send_tweet_func(daily_season_tweet)
+    else:
+        # Season Stats Tweet
+        daily_season_tweet = daily_season_tweets.tues_season_stats()
+        send_tweet_func(daily_season_tweet)
+# Thursday
 elif CUR_WEEKDAY_NUM == 3:
-    tweet_to_send = daily_thursday_tweet(daily_base_tweet)
-    send_tweet_func(tweet_to_send)
+    if YESTERDAY_DATE == sql_queries.game_date_yest_query():
+        # Daily Box Score Tweet
+        daily_box_tweet = daily_thursday_tweet(daily_base_tweet)
+        send_tweet_func(daily_box_tweet)
+        # Season Stats Tweet
+        daily_season_tweet = daily_season_tweets.thur_season_stats()
+        send_tweet_func(daily_season_tweet)
+    else:
+        # Season Stats Tweet
+        daily_season_tweet = daily_season_tweets.thur_season_stats()
+        send_tweet_func(daily_season_tweet)
+# Friday
 elif CUR_WEEKDAY_NUM == 4:
+    if YESTERDAY_DATE == sql_queries.game_date_yest_query():
+        # Daily Box Score Tweet
+        daily_box_tweet = daily_friday_tweet(daily_base_tweet)
+        send_tweet_func(daily_box_tweet)
+        # Season Stats Tweet
+        daily_season_tweet = daily_season_tweets.fri_season_stats()
+        send_tweet_func(daily_season_tweet)
+    else:
+        # Season Stats Tweet
+        daily_season_tweet = daily_season_tweets.fri_season_stats()
+        send_tweet_func(daily_season_tweet)
     tweet_to_send = daily_friday_tweet(daily_base_tweet)
     send_tweet_func(tweet_to_send)
+# Saturday
 elif CUR_WEEKDAY_NUM == 5:
-    tweet_to_send = daily_saturday_tweet(daily_base_tweet)
-    send_tweet_func(tweet_to_send)
+    if YESTERDAY_DATE == sql_queries.game_date_yest_query():
+        # Daily Box Score Tweet
+        daily_box_tweet = daily_saturday_tweet(daily_base_tweet)
+        send_tweet_func(daily_box_tweet)
+        # Season Stats Tweet
+        daily_season_tweet = daily_season_tweets.sat_season_stats()
+        send_tweet_func(daily_season_tweet)
+    else:
+        # Season Stats Tweet
+        daily_season_tweet = daily_season_tweets.sat_season_stats()
+        send_tweet_func(daily_season_tweet)
+# Sunday
 elif CUR_WEEKDAY_NUM == 6:
     tweet_to_send = daily_sunday_tweet(daily_base_tweet)
+    send_tweet_func(tweet_to_send)
+    tweet_to_send = weekly_sunday_tweet()
     send_tweet_func(tweet_to_send)
