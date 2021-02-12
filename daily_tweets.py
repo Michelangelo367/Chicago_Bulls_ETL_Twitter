@@ -122,7 +122,8 @@ def daily_monday_tweet(base_tweet):
 Ast/Tov: {daily_ast_tov_name} {daily_ast_tov_stat} {daily_ast_tov_emoji}
 TOV%: {daily_tov_perc_name} {daily_tov_perc_stat} {daily_tov_perc_emoji}
 FTr: {daily_ftar_name} {daily_ftar_stat} {daily_ftar_emoji}
-eFG%: {daily_efg_name} {daily_efg_stat} {daily_efg_emoji}"""
+eFG%: {daily_efg_name} {daily_efg_stat} {daily_efg_emoji}
+#BullsNation #Bulls #ChicagoBulls"""
     return formatted_tweet
 
 
@@ -167,7 +168,8 @@ def daily_tuesday_tweet(base_tweet):
 Mins: {daily_mins_name} {daily_mins_stat} {daily_mins_emoji}
 AST%: {daily_ast_perc_name} {daily_ast_perc_stat} {dail_ast_perc_emoji}
 3PAr: {daily_threepar_name} {daily_threepar_stat} {daily_threepar_emoji}
-TS%: {daily_tsp_name} {daily_tsp_stat} {daily_tsp_emoji}"""
+TS%: {daily_tsp_name} {daily_tsp_stat} {daily_tsp_emoji}
+#BullsNation #Bulls #ChicagoBulls"""
     return formatted_tweet
 
 
@@ -212,7 +214,8 @@ def daily_wednesday_tweet(base_tweet):
 Steals: {daily_stl_name} {daily_stl_stat} {daily_stl_emoji}
 BLK: {daily_blk_name} {daily_blk_stat} {daily_blk_emoji}
 3P%: {daily_threeperc_name} {daily_threeperc_stat} {daily_threeperc_emoji}
-AST%: {daily_ast_perc_name} {daily_ast_perc_stat} {dail_ast_perc_emoji}"""
+AST%: {daily_ast_perc_name} {daily_ast_perc_stat} {dail_ast_perc_emoji}
+#BullsNation #Bulls #ChicagoBulls"""
     return formatted_tweet
 
 
@@ -260,7 +263,8 @@ def daily_thursday_tweet(base_tweet):
 3PAr: {daily_threepar_name} {daily_threepar_stat} {daily_threepar_emoji}
 3P%: {daily_threeperc_name} {daily_threeperc_stat} {daily_threeperc_emoji}
 TS%: {daily_tsp_name} {daily_tsp_stat} {daily_tsp_emoji}
-eFG%: {daily_efg_name} {daily_efg_stat} {daily_efg_emoji}"""
+eFG%: {daily_efg_name} {daily_efg_stat} {daily_efg_emoji}
+#BullsNation #Bulls #ChicagoBulls"""
     return formatted_tweet
 
 
@@ -305,7 +309,8 @@ def daily_friday_tweet(base_tweet):
 Mins: {daily_mins_name} {daily_mins_stat} {daily_mins_emoji}
 TOV%: {daily_tov_perc_name} {daily_tov_perc_stat} {daily_tov_perc_emoji}
 Ast/Tov: {daily_ast_tov_name} {daily_ast_tov_stat} {daily_ast_tov_emoji}
-STL%: {daily_stl_name} {daily_stl_stat} {daily_stl_emoji}"""
+STL%: {daily_stl_name} {daily_stl_stat} {daily_stl_emoji}
+#BullsNation #Bulls #ChicagoBulls"""
     return formatted_tweet
 
 
@@ -350,7 +355,8 @@ def daily_saturday_tweet(base_tweet):
 BLK: {daily_blk_name} {daily_blk_stat} {daily_blk_emoji}
 AST%: {daily_ast_perc_name} {daily_ast_perc_stat} {dail_ast_perc_emoji}
 FTr: {daily_ftar_name} {daily_ftar_stat} {daily_ftar_emoji}
-3PAr: {daily_threepar_name} {daily_threepar_stat} {daily_threepar_emoji}"""
+3PAr: {daily_threepar_name} {daily_threepar_stat} {daily_threepar_emoji}
+#BullsNation #Bulls #ChicagoBulls"""
     return formatted_tweet
 
 
@@ -395,7 +401,8 @@ def daily_sunday_tweet(base_tweet):
 TS%: {daily_tsp_name} {daily_tsp_stat} {daily_tsp_emoji}
 eFG%: {daily_efg_name} {daily_efg_stat} {daily_efg_emoji}
 BLK: {daily_blk_name} {daily_blk_stat} {daily_blk_emoji}
-FTr: {daily_ftar_name} {daily_ftar_stat} {daily_ftar_emoji}"""
+FTr: {daily_ftar_name} {daily_ftar_stat} {daily_ftar_emoji}
+#BullsNation #Bulls #ChicagoBulls"""
     return formatted_tweet
 
 
@@ -471,7 +478,7 @@ Reb Per36: {weekly_reb_full_game_name} - {weekly_reb_full_game_stat}{weekly_reb_
 TS%: {weekly_tsp_name} - {weekly_tsp_stat}{weekly_tsp_emoji}
 3P%: {weekly_three_percent_name} - {weekly_three_percent_stat}{weekly_three_percent_emoji} 
 Ast/Tov: {weekly_ast_tov_ratio_name} - {weekly_ast_tov_ratio_stat}{weekly_ast_tov_emoji}
-    """
+#BullsNation #Bulls #ChicagoBulls"""
     return formatted_tweet
 
 
@@ -513,7 +520,7 @@ elif CUR_WEEKDAY_NUM == 2:
         send_tweet_func(daily_season_tweet)
     else:
         # Season Stats Tweet
-        daily_season_tweet = daily_season_tweets.tues_season_stats()
+        daily_season_tweet = daily_season_tweets.wed_season_stats()
         send_tweet_func(daily_season_tweet)
 # Thursday
 elif CUR_WEEKDAY_NUM == 3:
@@ -541,8 +548,6 @@ elif CUR_WEEKDAY_NUM == 4:
         # Season Stats Tweet
         daily_season_tweet = daily_season_tweets.fri_season_stats()
         send_tweet_func(daily_season_tweet)
-    tweet_to_send = daily_friday_tweet(daily_base_tweet)
-    send_tweet_func(tweet_to_send)
 # Saturday
 elif CUR_WEEKDAY_NUM == 5:
     if YESTERDAY_DATE == sql_queries.game_date_yest_query():

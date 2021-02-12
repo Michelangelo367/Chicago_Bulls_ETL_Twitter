@@ -51,6 +51,7 @@ Top 5 PPG Season:
 {top_ppg}
 Top 5 Points Per 36 Mins Season:
 {top_ppg_full_game}
+#BullsNation #Bulls #ChicagoBulls
 """
     return formatted_tweet
 
@@ -82,6 +83,7 @@ Top 5 APG Season:
 {top_apg}
 Top 5 Assist Per 36 Mins Season:
 {top_apg_full_game}
+#BullsNation #Bulls #ChicagoBulls
 """
     return formatted_tweet
 
@@ -109,10 +111,11 @@ def wed_season_stats():
 
     # Formatting Tweet
     formatted_tweet = f"""
-Top 5 Three Point Attempt Rate Season: 
+Top 5 - 3 Pt Attempt Rate Season: 
 {top_threepar}
-Top 5 Three Point Percent Season:
+Top 5 - 3% Season:
 {top_three_point_perc}
+#BullsNation #Bulls #ChicagoBulls
 """
     return formatted_tweet
 
@@ -144,6 +147,7 @@ Top 5 Effective FG Season:
 {top_efg}
 Top 5 Three Point Percent Season:
 {ts_perc}
+#BullsNation #Bulls #ChicagoBulls
 """
     return formatted_tweet
 
@@ -175,6 +179,7 @@ Top 5 Tov Per Game Season:
 {top_tov_game}
 Top 5 Turnover Percent Season:
 {top_tov_perc}
+#BullsNation #Bulls #ChicagoBulls
 """
     return formatted_tweet
 
@@ -206,5 +211,6 @@ Top 5 Steals Per Game Season:
 {stl_game}
 Top 5 Blocks Per Game Season:
 {top_blk_game}
+#BullsNation #Bulls #ChicagoBulls
 """
     return formatted_tweet
