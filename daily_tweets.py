@@ -563,7 +563,11 @@ elif CUR_WEEKDAY_NUM == 5:
         send_tweet_func(daily_season_tweet)
 # Sunday
 elif CUR_WEEKDAY_NUM == 6:
-    tweet_to_send = daily_sunday_tweet(daily_base_tweet)
-    send_tweet_func(tweet_to_send)
-    tweet_to_send = weekly_sunday_tweet()
-    send_tweet_func(tweet_to_send)
+    if YESTERDAY_DATE == sql_queries.game_date_yest_query():
+        # Daily Box Score Tweet
+        tweet_to_send = daily_sunday_tweet(daily_base_tweet)
+        send_tweet_func(tweet_to_send)
+    else:
+        # Weekly Tweet
+        tweet_to_send = weekly_sunday_tweet()
+        send_tweet_func(tweet_to_send)
