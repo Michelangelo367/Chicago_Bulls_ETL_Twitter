@@ -567,6 +567,9 @@ elif CUR_WEEKDAY_NUM == 6:
         # Daily Box Score Tweet
         tweet_to_send = daily_sunday_tweet(daily_base_tweet)
         send_tweet_func(tweet_to_send)
+        # Weekly Tweet
+        tweet_to_send = weekly_sunday_tweet()
+        send_tweet_func(tweet_to_send)
     else:
         # Weekly Tweet
         tweet_to_send = weekly_sunday_tweet()
