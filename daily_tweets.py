@@ -489,9 +489,6 @@ if CUR_WEEKDAY_NUM == 0:
         # Daily Box Score Tweet
         daily_box_tweet = daily_monday_tweet(daily_base_tweet)
         send_tweet_func(daily_box_tweet)
-        # Season Stats Tweet
-        daily_season_tweet = daily_season_tweets.mon_season_stats()
-        send_tweet_func(daily_season_tweet)
     else:
         # Season Stats Tweet
         daily_season_tweet = daily_season_tweets.mon_season_stats()
@@ -502,9 +499,6 @@ elif CUR_WEEKDAY_NUM == 1:
         # Daily Box Score Tweet
         daily_box_tweet = daily_tuesday_tweet(daily_base_tweet)
         send_tweet_func(daily_box_tweet)
-        # Season Stats Tweet
-        daily_season_tweet = daily_season_tweets.tues_season_stats()
-        send_tweet_func(daily_season_tweet)
     else:
         # Season Stats Tweet
         daily_season_tweet = daily_season_tweets.tues_season_stats()
@@ -515,12 +509,10 @@ elif CUR_WEEKDAY_NUM == 2:
         # Daily Box Score Tweet
         daily_box_tweet = daily_wednesday_tweet(daily_base_tweet)
         send_tweet_func(daily_box_tweet)
-        # Season Stats Tweet
-        daily_season_tweet = daily_season_tweets.wed_season_stats()
-        send_tweet_func(daily_season_tweet)
     else:
         # Season Stats Tweet
         daily_season_tweet = daily_season_tweets.wed_season_stats()
+        daily_season_tweet = daily_season_tweet[:280]
         send_tweet_func(daily_season_tweet)
 # Thursday
 elif CUR_WEEKDAY_NUM == 3:
@@ -528,9 +520,6 @@ elif CUR_WEEKDAY_NUM == 3:
         # Daily Box Score Tweet
         daily_box_tweet = daily_thursday_tweet(daily_base_tweet)
         send_tweet_func(daily_box_tweet)
-        # Season Stats Tweet
-        daily_season_tweet = daily_season_tweets.thur_season_stats()
-        send_tweet_func(daily_season_tweet)
     else:
         # Season Stats Tweet
         daily_season_tweet = daily_season_tweets.thur_season_stats()
@@ -541,9 +530,6 @@ elif CUR_WEEKDAY_NUM == 4:
         # Daily Box Score Tweet
         daily_box_tweet = daily_friday_tweet(daily_base_tweet)
         send_tweet_func(daily_box_tweet)
-        # Season Stats Tweet
-        daily_season_tweet = daily_season_tweets.fri_season_stats()
-        send_tweet_func(daily_season_tweet)
     else:
         # Season Stats Tweet
         daily_season_tweet = daily_season_tweets.fri_season_stats()
@@ -554,9 +540,6 @@ elif CUR_WEEKDAY_NUM == 5:
         # Daily Box Score Tweet
         daily_box_tweet = daily_saturday_tweet(daily_base_tweet)
         send_tweet_func(daily_box_tweet)
-        # Season Stats Tweet
-        daily_season_tweet = daily_season_tweets.sat_season_stats()
-        send_tweet_func(daily_season_tweet)
     else:
         # Season Stats Tweet
         daily_season_tweet = daily_season_tweets.sat_season_stats()

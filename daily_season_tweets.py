@@ -53,6 +53,7 @@ Top 5 Points Per 36 Mins Season:
 {top_ppg_full_game}
 #BullsNation #Bulls #ChicagoBulls
 """
+    formatted_tweet = formatted_tweet[:280]
     return formatted_tweet
 
 
@@ -85,6 +86,7 @@ Top 5 Assist Per 36 Mins Season:
 {top_apg_full_game}
 #BullsNation #Bulls #ChicagoBulls
 """
+    formatted_tweet = formatted_tweet[:280]
     return formatted_tweet
 
 
@@ -117,6 +119,7 @@ Top 5 - 3% Season:
 {top_three_point_perc}
 #BullsNation #Bulls #ChicagoBulls
 """
+    formatted_tweet = formatted_tweet[:280]
     return formatted_tweet
 
 
@@ -149,6 +152,7 @@ Top 5 Three Point Percent Season:
 {ts_perc}
 #BullsNation #Bulls #ChicagoBulls
 """
+    formatted_tweet = formatted_tweet[:280]
     return formatted_tweet
 
 
@@ -181,6 +185,7 @@ Top 5 Turnover Percent Season:
 {top_tov_perc}
 #BullsNation #Bulls #ChicagoBulls
 """
+    formatted_tweet = formatted_tweet[:280]
     return formatted_tweet
 
 
@@ -213,4 +218,5 @@ Top 5 Blocks Per Game Season:
 {top_blk_game}
 #BullsNation #Bulls #ChicagoBulls
 """
+    formatted_tweet = formatted_tweet[:280]
     return formatted_tweet
