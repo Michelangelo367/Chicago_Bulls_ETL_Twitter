@@ -5,6 +5,10 @@ The python code is used with an AWS RDS PostgreSQL to hold all the daily stats f
 This program includes an ETL (Extract, Transform, Load) from the NBA Stats website into an AWS PostgreSQL database.
 From that point the program then tweets out a daily Stats Summary of the leaders from the game the night before.
 
+## API
+The data that this twitter account uses is publically avalable through an API hosted on AWS.
+Please see this [repository](https://github.com/culpgrant/Chicago_Bulls_API) for information on how to call the API.
+
 ## ETL
 The code for this ETL project can be found in [bulls_boxscore_etl.py](https://github.com/culpgrant/Chicago_Bulls_ETL_Twitter/blob/master/bulls_boxscore_etl.py). 
 The script checks the [NBA Stats website](https://www.nba.com/stats/players/traditional/?sort=PTS&dir=-1)
