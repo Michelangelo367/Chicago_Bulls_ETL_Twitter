@@ -152,6 +152,7 @@ def check_new_game(list_games, new_stats):
     :param new_stats: list of the game pulled from the website
     :return: Either system exit or nothing
     """
+    new_game_id = 0
     for data_point in new_stats:
         new_game_id = str(data_point['GAME_ID'])
     if new_game_id in list_games:
